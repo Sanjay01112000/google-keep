@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import CreateArea from "./components/CreateArea";
 import Note from "./components/Note";
 import Count from "./components/Count";
+import Footer from "./components/Footer";
 
 function App() {
   const notes = useSelector((state) => state.notesData.notes);
@@ -74,6 +75,7 @@ function App() {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }
