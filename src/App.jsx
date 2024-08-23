@@ -53,6 +53,7 @@ function App() {
                 id={index}
                 title={note.title}
                 content={note.content}
+                image={note.image} // Pass image to unpinned notes
                 onDelete={() => handleDeleteNotes(index, true)}
                 onPin={() => handleUnpinNote(index)}
                 isPinned={true}
@@ -69,6 +70,7 @@ function App() {
             id={index}
             title={note.title}
             content={note.content}
+            image={note.image} // Pass image to unpinned notes
             onDelete={() => handleDeleteNotes(index, false)}
             onPin={() => handlePinNote(index)}
             isPinned={false}

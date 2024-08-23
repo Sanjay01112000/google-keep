@@ -133,6 +133,14 @@ form button {
   outline: none;
 }
 
+.note img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+
 /* Count Styles */
 .count {
   display: flex;

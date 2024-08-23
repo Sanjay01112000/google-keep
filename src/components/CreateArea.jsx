@@ -1,5 +1,4 @@
-// src/components/CreateArea.jsx
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { IoIosAdd } from "react-icons/io";
 
 function CreateArea({ onAdd }) {
@@ -8,16 +7,32 @@ function CreateArea({ onAdd }) {
   const [note, setNote] = useState({
     title: "",
     content: "",
+    image: null,
   });
+
+  // Create a ref for the file input
+  const fileInputRef = useRef(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setNote((preValue) => {
-      return {
-        ...preValue,
-        [name]: value,
+    setNote((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  }
+
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNote((prevValue) => ({
+          ...prevValue,
+          image: reader.result,
+        }));
       };
-    });
+      reader.readAsDataURL(file);
+    }
   }
 
   function handleExpanded() {
@@ -29,7 +44,14 @@ function CreateArea({ onAdd }) {
     setNote({
       title: "",
       content: "",
+      image: null,
     });
+
+    // Clear the file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+
     event.preventDefault();
   }
 
@@ -55,6 +77,15 @@ function CreateArea({ onAdd }) {
             rows={isExpanded ? 3 : 1}
           ></textarea>
         </p>
+        {isExpanded && (
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            ref={fileInputRef} // Attach the ref here
+            style={{ marginTop: "10px" }}
+          />
+        )}
         <button onClick={submitButton}>
           <IoIosAdd size={35} />
         </button>
