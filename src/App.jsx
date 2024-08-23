@@ -45,7 +45,7 @@ function App() {
 
       {pinnedNotes.length > 0 && (
         <div>
-          <h3>Pinned Notes</h3>
+          <h3 className="pinned-notes-text">Pinned Notes</h3>
           <div className="grid-container">
             {pinnedNotes.map((note, index) => (
               <Note
