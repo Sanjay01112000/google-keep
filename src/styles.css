@@ -121,6 +121,11 @@ form button {
   flex-direction: row;
   justify-content: flex-end;
 }
+.note-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .note button {
   color: #f88651;
   border: none;
